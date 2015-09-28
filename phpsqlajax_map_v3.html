@@ -1,0 +1,420 @@
+
+<?php
+echo "hello world<br>";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "test";
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+echo "Connected successfully<br>";
+$sql = "SELECT id FROM marker";
+$result = mysqli_query($conn, $sql);
+if (mysqli_num_rows($result) > 0) {
+    // output data of each row
+    while($row = mysqli_fetch_assoc($result)) {
+        echo "id: " . $row["id"]."<br>";
+    }
+	
+} else {
+    echo "0 results";
+}
+$conn->close();
+
+?>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps AJAX + mySQL/PHP Example</title>
+    <script src="http://maps.google.com/maps/api/js?sensor=false"
+            type="text/javascript"></script>
+    <script type="text/javascript">
+    //<![CDATA[
+
+    var customIcons = {
+      restaurant: {
+        icon: 'http://orig05.deviantart.net/dc78/f/2010/148/1/9/20x20_png_icons_domo_by_jmcivor.png',
+        shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
+      },
+      bar: {
+        icon: 'http://orig05.deviantart.net/fd47/f/2010/148/d/6/20x20_png_icons_megaman3_by_jmcivor.png',
+        shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
+      
+	  },
+	  apartment: {
+        icon: 'http://www.wilder.org/SiteCollectionImages/twitter-bird20x20.png',
+        shadow: 'http://labs.google.com/ridefinder/images/mm_20_shadow.png'
+      
+	  },
+	 
+	};
+	  
+	 
+	
+	
+
+
+    function load() {
+      var map = new google.maps.Map(document.getElementById("map"), {
+        center: new google.maps.LatLng(47.6145, -122.3418),
+        zoom: 13,
+        mapTypeId: 'roadmap'
+      });
+      var infoWindow = new google.maps.InfoWindow;
+      
+	 //Confirmed this part is called
+      // Change this depending on the name of your PHP file
+		//1
+          var name = "Pan Africa Market";
+          var address = "1521 1st Ave, Seattle, WA";
+          var type ="restaurant";
+          var point = new google.maps.LatLng(
+              parseFloat("47.608940"),
+              parseFloat("-122.340141"));
+          var html = "<b>" + name + "</b> <br/>" + address;
+          var icon = customIcons[type] || {};
+          var marker = new google.maps.Marker({
+            map: map,
+            position: point,
+            icon: icon.icon,
+            shadow: icon.shadow
+          });
+		  //2
+		     var name = "Buddha Thai & Bar";
+          var address = "2222 2nd Ave, Seattle, WA";
+          var type ="bar";
+          var point = new google.maps.LatLng(
+              parseFloat("47.613590"),
+              parseFloat("-122.344391"));
+          var html = "<b>" + name + "</b> <br/>" + address;
+          var icon = customIcons[type] || {};
+          var marker = new google.maps.Marker({
+            map: map,
+            position: point,
+            icon: icon.icon,
+            shadow: icon.shadow
+          });
+		  //3
+		  	     var name = "The Melting Pot";
+          var address = "14 Mercer St. Seattle, WA";
+          var type ="cafe";
+          var point = new google.maps.LatLng(
+              parseFloat("47.624561"),
+              parseFloat("-122.356445"));
+          var html = "<b>" + name + "</b> <br/>" + address;
+          var icon = customIcons[type] || {};
+          var marker = new google.maps.Marker({
+            map: map,
+            position: point,
+            icon: icon.icon,
+            shadow: icon.shadow
+          });
+		  //4
+		  	     var name = "Ipanema Grill";
+          var address = "1225 1st Ave, Seattle, WA";
+          var type ="restaurant";
+          var point = new google.maps.LatLng(
+              parseFloat("47.606395"),
+              parseFloat("-122.337654"));
+          var html = "<b>" + name + "</b> <br/>" + address;
+          var icon = customIcons[type] || {};
+          var marker = new google.maps.Marker({
+            map: map,
+            position: point,
+            icon: icon.icon,
+            shadow: icon.shadow
+          });
+		  //5
+		  		  	     var name = "Sake House";
+          var address = "2230 1st Ave, Seattle, WA";
+          var type ="bar";
+          var point = new google.maps.LatLng(
+              parseFloat("47.612823"),
+              parseFloat("-122.345673"));
+          var html = "<b>" + name + "</b> <br/>" + address;
+          var icon = customIcons[type] || {};
+          var marker = new google.maps.Marker({
+            map: map,
+            position: point,
+            icon: icon.icon,
+            shadow: icon.shadow
+          });
+		  //6
+		  	var name = "The Crab Pot";
+          var address = "1301 Alaskan Way, Seattle, WA";
+          var type ="cafe";
+          var point = new google.maps.LatLng(
+              parseFloat("47.605961"),
+              parseFloat("-122.340363"));
+          var html = "<b>" + name + "</b> <br/>" + address;
+          var icon = customIcons[type] || {};
+          var marker = new google.maps.Marker({
+            map: map,
+            position: point,
+            icon: icon.icon,
+            shadow: icon.shadow
+          });
+		  //7
+		 var name = "Mama's Mexican Kitchen";
+          var address = "2234 2nd Ave, Seattle, WA";
+          var type ="restaurant";
+          var point = new google.maps.LatLng(
+              parseFloat("47.613976"),
+              parseFloat("-122.345467"));
+          var html = "<b>" + name + "</b> <br/>" + address;
+          var icon = customIcons[type] || {};
+          var marker = new google.maps.Marker({
+            map: map,
+            position: point,
+            icon: icon.icon,
+            shadow: icon.shadow
+          }); 
+	 //8
+	  var name = "Wingdom";
+          var address = "1416 E Olive Way, Seattle, WA";
+          var type ="bar";
+          var point = new google.maps.LatLng(
+              parseFloat("47.617214"),
+              parseFloat("-122.326584"));
+          var html = "<b>" + name + "</b> <br/>" + address;
+          var icon = customIcons[type] || {};
+          var marker = new google.maps.Marker({
+            map: map,
+            position: point,
+            icon: icon.icon,
+            shadow: icon.shadow
+          }); 
+		  //9
+		   var name = "Piroshky Piroshky";
+          var address = "1908 Pike PL, Seattle, WA";
+          var type ="restaurant";
+          var point = new google.maps.LatLng(
+              parseFloat("47.615126"),
+              parseFloat("-122.342834"));
+          var html = "<b>" + name + "</b> <br/>" + address;
+          var icon = customIcons[type] || {};
+          var marker = new google.maps.Marker({
+            map: map,
+            position: point,
+            icon: icon.icon,
+            shadow: icon.shadow
+          }); 
+		  //10
+		  var name = "The Bianos PizzaHouse";
+          var address = "23rd Ave W, Seattle, WA";
+          var type ="restaurant";
+          var point = new google.maps.LatLng(
+              parseFloat("47.618286"),
+              parseFloat("-122.345784"));
+          var html = "<b>" + name + "</b> <br/>" + address;
+          var icon = customIcons[type] || {};
+          var marker = new google.maps.Marker({
+            map: map,
+            position: point,
+            icon: icon.icon,
+            shadow: icon.shadow
+          });
+		  //11
+			var name = "queen anne apartments";
+          var address = "Aloha St., Seattle, WA";
+          var type ="apartment";
+          var point = new google.maps.LatLng(
+              parseFloat("47.627342"),
+              parseFloat("-122.355774"));
+          var html = "<b>" + name + "</b> <br/>" + address;
+          var icon = customIcons[type] || {};
+          var marker = new google.maps.Marker({
+            map: map,
+            position: point,
+            icon: icon.icon,
+            shadow: icon.shadow
+          }); 	
+		  //12
+			var name = "Wallgreens";
+          var address = "John St., Seattle, WA";
+          var type ="club";
+          var point = new google.maps.LatLng(
+              parseFloat("47.619453"),
+              parseFloat("-122.345663"));
+          var html = "<b>" + name + "</b> <br/>" + address;
+          var icon = customIcons[type] || {};
+          var marker = new google.maps.Marker({
+            map: map,
+            position: point,
+            icon: icon.icon,
+            shadow: icon.shadow
+          }); 
+		//13
+		var name = "Far Eats";
+          var address = "5th Ave., Seattle, WA";
+          var type ="restaurant";
+          var point = new google.maps.LatLng(
+              parseFloat("47.616453"),
+              parseFloat("-122.344663"));
+          var html = "<b>" + name + "</b> <br/>" + address;
+          var icon = customIcons[type] || {};
+          var marker = new google.maps.Marker({
+            map: map,
+            position: point,
+            icon: icon.icon,
+            shadow: icon.shadow
+          }); 
+			//14
+			var name = "Hutch Kids Child Care Center";
+          var address = "Valley St., Seattle, WA";
+          var type ="carecenter";
+          var point = new google.maps.LatLng(
+              parseFloat("47.625878"),
+              parseFloat("-122.331855"));
+          var html = "<b>" + name + "</b> <br/>" + address;
+          var icon = customIcons[type] || {};
+          var marker = new google.maps.Marker({
+            map: map,
+            position: point,
+            icon: icon.icon,
+            shadow: icon.shadow
+          });
+			//15
+			var name = "Lyon's Grocery";
+          var address = "Dexter Ave N, Seattle, WA";
+          var type ="grocery";
+          var point = new google.maps.LatLng(
+              parseFloat("47.637473"),
+              parseFloat("-122.342733"));
+          var html = "<b>" + name + "</b> <br/>" + address;
+          var icon = customIcons[type] || {};
+          var marker = new google.maps.Marker({
+            map: map,
+            position: point,
+            icon: icon.icon,
+            shadow: icon.shadow
+          }); 
+			//16
+			var name = "Moore Coffee Shop";
+          var address = "2nd Ave., Seattle, WA";
+          var type ="cafe";
+          var point = new google.maps.LatLng(
+              parseFloat("47.611453"),
+              parseFloat("-122.341613"));
+          var html = "<b>" + name + "</b> <br/>" + address;
+          var icon = customIcons[type] || {};
+          var marker = new google.maps.Marker({
+            map: map,
+            position: point,
+            icon: icon.icon,
+            shadow: icon.shadow
+          }); 
+			//17
+			var name = "Wild Rye Cafe Bakery";
+          var address = "Pike St., Seattle, WA";
+          var type ="cafe";
+          var point = new google.maps.LatLng(
+              parseFloat("47.612561"),
+              parseFloat("-122.331332"));
+          var html = "<b>" + name + "</b> <br/>" + address;
+          var icon = customIcons[type] || {};
+          var marker = new google.maps.Marker({
+            map: map,
+            position: point,
+            icon: icon.icon,
+            shadow: icon.shadow
+          }); 
+			//18
+			var name = "Citydog Club";
+          var address = "Olive way, Seattle, WA";
+          var type ="club";
+          var point = new google.maps.LatLng(
+              parseFloat("47.614376"),
+              parseFloat("-122.333445"));
+          var html = "<b>" + name + "</b> <br/>" + address;
+          var icon = customIcons[type] || {};
+          var marker = new google.maps.Marker({
+            map: map,
+            position: point,
+            icon: icon.icon,
+            shadow: icon.shadow
+          }); 	
+			//19
+			var name = "Under U 4 Men";
+          var address = "Broadway E, Seattle, WA";
+          var type ="clothes";
+          var point = new google.maps.LatLng(
+              parseFloat("47.625487"),
+              parseFloat("-122.321556"));
+          var html = "<b>" + name + "</b> <br/>" + address;
+          var icon = customIcons[type] || {};
+          var marker = new google.maps.Marker({
+            map: map,
+            position: point,
+            icon: icon.icon,
+            shadow: icon.shadow
+          }); 	
+			
+			//20
+			var name = "AQUA by El Gaucho";
+          var address = "Broad St., Seattle, WA";
+          var type ="restaurant";
+          var point = new google.maps.LatLng(
+              parseFloat("47.614465"),
+              parseFloat("-122.356445"));
+          var html = "<b>" + name + "</b> <br/>" + address;
+          var icon = customIcons[type] || {};
+          var marker = new google.maps.Marker({
+            map: map,
+            position: point,
+            icon: icon.icon,
+            shadow: icon.shadow
+          }); 		  
+    }
+
+    function bindInfoWindow(marker, map, infoWindow, html) {
+      google.maps.event.addListener(marker, 'click', function() {
+        infoWindow.setContent(html);
+        infoWindow.open(map, marker);
+      });
+    }
+
+    function downloadUrl(url, callback) {
+      var request = window.ActiveXObject ?
+          new ActiveXObject('Microsoft.XMLHTTP') :
+          new XMLHttpRequest;
+
+      request.onreadystatechange = function() {
+        if (request.readyState == 4) {
+          request.onreadystatechange = doNothing;
+          callback(request, request.status);
+        }
+      };
+
+      request.open('GET', url, true);
+      request.send(null);
+    }
+
+    function doNothing() {}
+
+    //]]>
+  </script>
+  </head>
+
+  <body onload="load()">
+  <style>
+	body {background-color:lightgray}
+	h1   {color:blue}
+	h2   {color:red}
+	</style>
+  <center><h1>Welcome to this website</h1></center>
+    <div id="map" style="width: 800px; height: 500px"></div>
+	
+	<center><h1>Welcome to this website</h1></center>
+	<center><h2>THE RED LIGHT DISTRICT</h2></center>
+	
+	
+	
+  </body>
+</html>
