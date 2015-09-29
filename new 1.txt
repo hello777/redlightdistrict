@@ -1,0 +1,7 @@
+carecenter: {
+		icon: 'http://ipharmd.net/images/red_cross_round_red.png',
+	  }
+	  
+	  'http://labs.google.com/ridefinder/images/mm_20_green.png
+	  
+	  http://labs.google.com/ridefinder/images/mm_20_green.png
