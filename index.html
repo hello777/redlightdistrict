@@ -12,7 +12,6 @@
 
 		<title> RED LIGHT DISTRICT </title>
 		<style>
-
      
     </style>
     <script src="https://maps.googleapis.com/maps/api/js"></script>
@@ -27,7 +26,6 @@
         var map = new google.maps.Map(mapCanvas, mapOptions)
       }
       google.maps.event.addDomListener(window, 'load', initialize);
-
     </script>
 	
 
@@ -63,21 +61,22 @@
 		
 			
 		<div>
-			<form>
+			
 				<div class="container">
 					<div class="row">
 		<section class="loginform cf">
-<form name="login" action="index_submit" method="get" accept-charset="utf-8">
+<form name="login" action="login.php" method="POST" accept-charset="utf-8">
     <ul id="loginbtn1">
-    	<label for="usermail">Email</label>
-        <input type="email" name="usermail" placeholder="yourname@email.com" required>
+    	<label for="username">Username</label>
+        <input type="text" name="uname" placeholder="Username" required>
         <label for="password">Password</label>
-        <input type="password" name="password" placeholder="password" required>
+        <input type="password" name="pass" placeholder="Password" required>
         </ul>
-
+ 
 </section>
 		<ul id="loginbtn">
-		 <button type="button" class="btn btn-default navbar-btn btn-lg">Login</button>
+		 <button type="submit" name="submit" value="login" class="btn btn-default navbar-btn btn-lg">Login</button>
+		 </form>
 		<button type="button" class="btn btn-default navbar-btn btn-lg">Register</button><br>
 		<a class="navbar-brand" href="http://www.facebook.com">
        <button type="button" class="btn btn-default navbar-btn btn-lg">
@@ -89,8 +88,8 @@
    </ul>
    			 <div id="map"></div>
 
-    </form>
-    </form>
+    
+   
     </body>
 		</div>
 		<div class="container">
